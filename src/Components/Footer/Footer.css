@@ -1,0 +1,13 @@
+.footer {
+  width: 100%;
+}
+
+.footer-link {
+  color: #bbb;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: white;
+  text-decoration: underline;
+}

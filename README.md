@@ -68,3 +68,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+My Things:
+
+>> to use react bootstrap: npm install react-bootstrap bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'; -->(index.js)
+
+>> Used React bootstrap components (Navbar)
+
+>> to use corousel here used react slick to install :npm install react-slick --save
+npm install slick-carousel --save
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"; (import them in carousel file)
+
+>>Thunder Client to check api
+'https://dummyjson.com/products'
+>> used axios to get data dummyjson data : 
+
+>> npm install react-icons

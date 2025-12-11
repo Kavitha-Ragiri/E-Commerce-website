@@ -1,0 +1,19 @@
+.cart-page {
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.cart-card {
+  border-radius: 12px;
+}
+
+.cart-img {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.cart-summary {
+  border-radius: 12px;
+  background: #ffffff;
+}
