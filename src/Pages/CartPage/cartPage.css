@@ -1,5 +1,5 @@
 .cart-page {
-  background: #f8f9fa;
+  background: #03042fff;
   min-height: 100vh;
 }
 
@@ -16,4 +16,7 @@
 .cart-summary {
   border-radius: 12px;
   background: #ffffff;
+}
+body{
+  background-color: #03042fff;
 }

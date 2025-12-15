@@ -10,6 +10,7 @@ function AllProducts() {
   const [searchText, setSearchText] = useState("");
   const [searchParams] = useSearchParams()
   const [sortOption,setSortOption]= useState("")
+  const [activeCategory, setActiveCategory] = useState("all")
 
   const searchQuery = searchParams.get("searchProduct") || "";
   const navigate = useNavigate()
@@ -32,11 +33,14 @@ function AllProducts() {
   const filterByCategory = (category) => {
     if (category === "all") {
       setProducts(allProducts);
+      setActiveCategory(category)
+    
       return;
     }
 
     const filtered = allProducts.filter((item) => item.category === category);
     setProducts(filtered);
+      setActiveCategory(category)
   };
 
 
@@ -45,7 +49,8 @@ function AllProducts() {
     async function getProducts() {
       let res = await axios.get('https://dummyjson.com/products');
       setAllProducts(res.data.products);
-      setProducts(res.data.products);
+       setProducts(res.data.products);
+      
     }
     getProducts();
   }, []);
@@ -70,34 +75,54 @@ function AllProducts() {
       <div className='container mt-5 pt-4'>
 
         <div className='d-flex flex-row justify-content-start gap-5 mt-3 pt-3 align-items-center'>
-          <h2 className="mt-4">Categories</h2>
-          <button onClick={() => navigate("/")} className='btn btn-warning'>Back</button>
+          <button onClick={() => navigate("/")} style={{border:"none", backgroundColor:"white"}}>
+            <span><i class="bi bi-arrow-left"></i> Back</span></button>
         </div>
 
-        <div className="category-bar d-flex gap-3 flex-wrap my-4">
+        <div className="category-bar d-flex justify-content-between align-items-center flex-wrap my-4">
 
-          <button className="btn btn-outline-dark" onClick={() => filterByCategory("beauty")}>
-            Beauty
-          </button>
+          {/* LEFT SIDE – CATEGORY BUTTONS */}
+          <div className="d-flex gap-3 flex-wrap">
+            <button
+              className={`btn ${activeCategory === "all" ? "btn-dark" : "btn-outline-dark"}`}
+              onClick={() => filterByCategory("all")}
+            >
+              All
+            </button>
 
-          <button className="btn btn-outline-dark" onClick={() => filterByCategory("groceries")}>
-            Groceries
-          </button>
+            <button
+              className={`btn ${activeCategory === "beauty" ? "btn-dark" : "btn-outline-dark"}`}
+              onClick={() => filterByCategory("beauty")}
+            >
+              Beauty
+            </button>
 
-          <button className="btn btn-outline-dark" onClick={() => filterByCategory("fragrances")}>
-            Fragrances
-          </button>
+            <button
+              className={`btn ${activeCategory === "groceries" ? "btn-dark" : "btn-outline-dark"}`}
+              onClick={() => filterByCategory("groceries")}
+            >
+              Groceries
+            </button>
 
-          <button className="btn btn-outline-dark" onClick={() => filterByCategory("furniture")}>
-            Furniture
-          </button>
+            <button
+              className={`btn ${activeCategory === "fragrances" ? "btn-dark" : "btn-outline-dark"}`}
+              onClick={() => filterByCategory("fragrances")}
+            >
+              Fragrances
+            </button>
 
-          <button className="btn btn-outline-dark" onClick={() => filterByCategory("all")}>
-            All
-          </button>
+            <button
+              className={`btn ${activeCategory === "furniture" ? "btn-dark" : "btn-outline-dark"}`}
+              onClick={() => filterByCategory("furniture")}
+            >
+              Furniture
+            </button>
+          </div>
+
+          {/* RIGHT SIDE – SORT DROPDOWN */}
           <div>
             <select
-              className="form-select w-auto mb-3"
+              className="form-select w-auto"
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
             >
@@ -107,8 +132,9 @@ function AllProducts() {
             </select>
           </div>
 
-
         </div>
+
+
 
         <div className='container'>
           <div className="d-flex justify-content-start gap-3 flex-wrap" style={{ height: 'auto' }}>

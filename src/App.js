@@ -15,6 +15,7 @@ import { Outlet } from 'react-router-dom';
 import CategoryProducts from './Pages/CategoryProduct/CategoryProducts';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Profile from './Pages/Profile/Profile';
 
 function App() {
 
@@ -33,14 +34,16 @@ function App() {
          
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/" element={<Home/>}/>
           <Route element={<ProtectedLayout/>}>
-              <Route path="/" element={<Home/>}/>
+              
               <Route path="/product/:id" element={<Products/>}/>
               <Route path="/mycart" element={<CartPage/>}/>
               <Route path="/proceedtopayment" element={<ProceedToPay/>}/>
               <Route path="/search" element={<SearchPage/>}/>
               <Route path="/products" element={<AllProducts/>}/>
               <Route path="/category/:categoryName" element={<CategoryProducts />} />
+              <Route path="/profile" element={<Profile/>}/>
 
           </Route>
           

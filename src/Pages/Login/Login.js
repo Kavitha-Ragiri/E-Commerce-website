@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -15,12 +15,12 @@ const Login = () => {
     console.log("Password:", password);
     navigate('/');
     localStorage.setItem('isLoggedIn', 'true');
-    toast.success("You are Successfully LoggedIn to ShopEase")
+    toast.success("LoggedIn to ShopEase")
 
   }
 
   return (
-    <div style={{width:"100%", height:"100%", backgroundColor:"orange"}}>
+    <div style={{width:"100%", height:"100%", backgroundColor:"#03042fff"}}>
 
   
     <div 
@@ -59,9 +59,26 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary w-100 mt-2">
-            Login
-          </button>
+               <div className="d-flex flex-column align-items-center">
+              <button
+                type="submit"
+                className="btn btn-primary btn-sm mt-3 px-4 fw-semibold"
+              >
+                Login
+              </button>
+
+              <p className="text-center small text-muted mt-3 mb-2">
+                New here? Create an account below <Link
+                to="/register"
+              >
+                Register
+              </Link>
+              </p>
+
+              
+            </div>
+
+ 
 
         </form>
       </div>

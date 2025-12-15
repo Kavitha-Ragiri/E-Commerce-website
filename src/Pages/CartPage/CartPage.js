@@ -25,9 +25,9 @@ function Cart() {
         });;
 
 
-// if (!Array.isArray(cartItems)) {
-  // cartItems = [];
-// }
+if (!Array.isArray(cartItems)) {
+  cartItems = [];
+}
 
 
   function increaseQty(id) {
@@ -36,6 +36,7 @@ function Cart() {
     );
     setCartItems(updated);
   localStorage.setItem("cartItems", JSON.stringify(updated));
+    window.dispatchEvent(new Event("cartUpdated"));
   }
 
   function decreaseQty(id) {
@@ -46,6 +47,7 @@ function Cart() {
     );
     setCartItems(updated);
     localStorage.setItem("cartItems", JSON.stringify(updated));
+      window.dispatchEvent(new Event("cartUpdated"));
     
   }
 
@@ -53,6 +55,9 @@ function Cart() {
     let updated = cartItems.filter(item => item.id !== id);
     localStorage.setItem("cartItems", JSON.stringify(updated));
     setCartItems(updated);
+     localStorage.setItem("cartItems", JSON.stringify(updated));
+
+    window.dispatchEvent(new Event("cartUpdated"));
   }
 
   function proccedToPayment(){
@@ -66,8 +71,10 @@ function Cart() {
 
       <div className="d-flex flex-row justify-content-between align-items-center mb-4">
         <h2 className="mb-4 fw-bold">Your Cart</h2>
-      <button className="btn btn-warning btn-sm"
-        onClick={() => navigate("/products")} >Back to Products</button>
+      <div className='d-flex flex-row justify-content-start gap-5 mt-3 pt-3 align-items-center'>
+          <button onClick={() => navigate("/products")} style={{border:"none", backgroundColor:"white"}}>
+            <span><i class="bi bi-arrow-left"></i> Back</span></button>
+        </div>
       </div>
 
       

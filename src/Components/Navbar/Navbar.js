@@ -23,20 +23,24 @@ function NavbarStore() {
 useEffect(() => {
   function updateCartCount() {
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const count = Array.isArray(cartItems) ? cartItems.length : 0;
-    setCartCount(count);
+
+    const totalQuantity = cartItems.reduce(
+      (sum, item) => sum + (item.quantity || 0),
+      0
+    );
+
+    setCartCount(totalQuantity);
   }
 
-  // initial load
-  updateCartCount();
+  updateCartCount(); // initial load
 
-  // update when cart changes
   window.addEventListener("cartUpdated", updateCartCount);
 
   return () => {
     window.removeEventListener("cartUpdated", updateCartCount);
   };
 }, []);
+
    
   let navigate = useNavigate();
   console.log(searchText)
@@ -50,13 +54,13 @@ useEffect(() => {
   <div >
 
  
-    <Navbar style={{backgroundColor:"#edb53bff"}} expand="lg" 
+    <Navbar style={{backgroundColor:"#2fd1f1ff"}} expand="lg" 
     className=" fixed-top">
       <Container fluid>
         {/* <Link to="/" className="text-decoration-none text-dark"> */}
         <Navbar.Brand 
          href="/"><strong className='m-4 p-4'
-         style={{color:"black" ,fontSize:"30px"}}>ShopEase</strong></Navbar.Brand>
+         style={{color:"#050781ff" ,fontSize:"30px"}}>ShopEase</strong></Navbar.Brand>
         {/* </Link> */}
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -78,13 +82,16 @@ useEffect(() => {
             onChange={(e) => setSearchText(e.target.value)}
             />
             <Button onClick={searchProduct}
-             variant="outline-success">Search</Button>
+             variant="btn btn-primary">Search</Button>
           </Form>
 
            {/* CART ICON */}
           <Nav className="d-flex align-items-center">
             <Link to="/mycart" className="text-decoration-none text-dark position-relative">
-              <FaShoppingCart size={28} />
+              <FaShoppingCart 
+  
+
+              size={28} />
               <span 
                 style={{
                   position: "absolute",
